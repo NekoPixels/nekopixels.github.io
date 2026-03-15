@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)https://lj3dmc.netlify.app/ -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>雷军三队猛冲 - MC全服导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
+        body {
+            background: linear-gradient(90deg, #4285F4, #ffffff, #e1e5ea);
+            background-size: 300% 300%;
+            animation: bgFlowLight 12s ease infinite;
+            min-height: 100vh;
+            padding: 20px;
+            padding-bottom: 40px;
+            transition: all 0.5s ease;
+        }
+        @keyframes bgFlowLight {
+            0%   { background-position: 0% 50%; }
+            33%  { background-position: 100% 50%; }
+            66%  { background-position: 50% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        body.dark {
+            background: linear-gradient(90deg, #1e3a8a, #5b21b6, #0f172a);
+            background-size: 300% 300%;
+            animation: bgFlowDark 12s ease infinite;
+            color: #fff;
+        }
+        @keyframes bgFlowDark {
+            0%   { background-position: 0% 50%; }
+            33%  { background-position: 100% 50%; }
+            66%  { background-position: 50% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            background: #2196f3;
+            color: white;
+            z-index: 99;
+            transition: all 0.3s ease;
+        }
+        .mode-toggle:hover {
+            transform: scale(1.05);
+        }
+        body.dark .mode-toggle {
+            background: #9c27b0;
+        }
+        .box {
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+        }
+        body.dark .box {
+            background: #1a1a2e;
+            box-shadow: 0 0 20px rgba(130, 71, 255, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #2196f3;
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+        }
+        body.dark h1 {
+            color: #ff9500;
+            text-shadow: 2px 2px 5px rgba(255, 149, 0, 0.3);
+        }
+        .title {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 16px;
+            transition: all 0.5s ease;
+        }
+        body.dark .title {
+            color: #e0e0e0;
+        }
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            background: #e6f2ff;
+            color: #2196f3;
+            border: 2px solid #2196f3;
+            border-radius: 12px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        .toggle-btn:hover {
+            transform: scale(1.02);
+            background: #2196f3;
+            color: white;
+        }
+        body.dark .toggle-btn {
+            background: #2d1a47;
+            color: #ff9500;
+            border: 2px solid #ff9500;
+        }
+        body.dark .toggle-btn:hover {
+            background: #ff9500;
+            color: #1a1a2e;
+        }
+        .server-list {
+            max-height: 0;
+            overflow: hidden;
+            margin-top: 15px;
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+        .server-list.show {
+            max-height: 5000px;
+            opacity: 1;
+        }
+        .server-item {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            color: white;
+            font-weight: bold;
+            transition: all 0.5s ease;
+        }
+        .red    { background: #e53935; }
+        .orange { background: #fb8c00; }
+        .yellow { background: #ffb300; color: #333; }
+        .green  { background: #43a047; }
+        .blue   { background: #1e88e5; }
+        .purple { background: #8e24aa; }
+        .pink   { background: #e53935; }
+        .teal   { background: #00897b; }
+        .cyan   { background: #00acc1; }
+        .indigo { background: #3949ab; }
+        body.dark .red    { background: #ff3d00; box-shadow: 0 0 10px rgba(255,61,0,0.4); }
+        body.dark .orange { background: #ff9100; box-shadow: 0 0 10px rgba(255,145,0,0.4); }
+        body.dark .yellow { background: #ffea00; color: #1a1a2e; box-shadow: 0 0 10px rgba(255,234,0,0.4); }
+        body.dark .green  { background: #00e676; box-shadow: 0 0 10px rgba(0,230,118,0.4); }
+        body.dark .blue   { background: #0091ea; box-shadow: 0 0 10px rgba(0,145,234,0.4); }
+        body.dark .purple { background: #aa00ff; box-shadow: 0 0 10px rgba(170,0,255,0.4); }
+        body.dark .pink   { background: #f50057; box-shadow: 0 0 10px rgba(245,0,87,0.4); }
+        body.dark .teal   { background: #00bfa5; box-shadow: 0 0 10px rgba(0,191,165,0.4); }
+        body.dark .cyan   { background: #00e5ff; box-shadow: 0 0 10px rgba(0,229,255,0.4); }
+        body.dark .indigo { background: #651fff; box-shadow: 0 0 10px rgba(101,31,255,0.4); }
+        .ip {
+            background: rgba(255,255,255,0.3);
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 8px;
+            font-family: monospace;
+        }
+        body.dark .ip {
+            background: rgba(0,0,0,0.3);
+        }
+        .update-note {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 12px;
+            transition: all 0.5s ease;
+        }
+        body.dark .update-note {
+            color: #e0e0e0;
+            background: rgba(26,26,46,0.8);
+            box-shadow: 0 0 10px rgba(130,71,255,0.2);
+        }
+        .chat-desc-box {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #e6f2ff;
+            color: #2196f3;
+            border: 2px solid #2196f3;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .chat-desc-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(0,0,0,0.15);
+        }
+        body.dark .chat-desc-box {
+            background: #2d1a47;
+            color: #ff9500;
+            border: 2px solid #ff9500;
+            box-shadow: 0 0 20px rgba(130,71,255,0.2);
+        }
+        .login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: all 0.5s ease;
+        }
+        body.dark .login-modal {
+            background: rgba(10,5,20,0.9);
+        }
+        .login-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+        body.dark .login-box {
+            background: #1a1a2e;
+            box-shadow: 0 0 20px rgba(130,71,255,0.3);
+        }
+        .login-box h2 {
+            margin-bottom: 20px;
+            color: #2196f3;
+            transition: all 0.5s ease;
+        }
+        body.dark .login-box h2 {
+            color: #ff9500;
+        }
+        .login-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        .login-input:focus {
+            border-color: #2196f3;
+        }
+        body.dark .login-input {
+            background: #2d2d44;
+            border-color: #4a4a6a;
+            color: #fff;
+        }
+        body.dark .login-input:focus {
+            border-color: #ff9500;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        .login-btn:hover {
+            background: #1976d2;
+        }
+        body.dark .login-btn {
+            background: #9c27b0;
+        }
+        body.dark .login-btn:hover {
+            background: #7b1fa2;
+        }
+        .hide {
+            display: none !important;
+        }
+
+        /* ========== 反馈弹窗样式 ========== */
+        .feedback-modal {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0,0,0,0.5);
+          z-index: 9999;
+          justify-content: center;
+          align-items: center;
+        }
+        .feedback-box {
+          background: white;
+          padding: 25px 30px;
+          border-radius: 14px;
+          width: 90%;
+          max-width: 360px;
+          text-align: center;
+          font-size: 15px;
+          line-height: 1.7;
+        }
+        .feedback-close {
+          margin-top: 18px;
+          padding: 7px 18px;
+          background: #4285F4;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+        }
+        body.dark .feedback-box {
+          background: #1a1a2e;
+          color: white;
+        }
+    </style>
+</head>
+
+<body class="dark">
+
+<!-- ========== 左上角 反馈中心按钮 ========== -->
+<button onclick="document.getElementById(&#39;feed&#39;).style.display=&#39;flex&#39;" style="position:fixed;top:12px;left:12px;padding:5px 10px;background:#4285F4;color:white;border:none;border-radius:6px;font-size:12px;cursor:pointer;z-index:999;">反馈中心</button>
+
+<!-- ========== 反馈弹窗 ========== -->
+<div id="feed" class="feedback-modal" style="display: none;">
+  <div class="feedback-box">
+    这是我的邮箱号：2755297803@qq.com<br>
+    有啥建议就发这邮箱过来呗<br>
+    或者微信发我<br><br>
+    <b>只在节假日看，不要在工作日发我，我看不了</b>
+    <br>
+    <button class="feedback-close" onclick="document.getElementById(&#39;feed&#39;).style.display=&#39;none&#39;">关闭</button>
+  </div>
+</div>
+
+<button class="mode-toggle" onclick="toggleMode()">切换为白天模式</button>
+
+<div class="box">
+    <h1>🌈 雷军三队猛冲 🌈</h1>
+    <div class="title">我的世界 Java 离线可进服务器大全</div>
+
+    <button class="toggle-btn" onclick="toggleServers(&#39;serverList1&#39;, this)">📂 Minecraft Java 1.19 离线可进</button>
+    <div class="server-list" id="serverList1">
+        <div class="server-item red">🎮 ZYM纯净生存服<br>版本：1.19-1.21 互通 | 离线可进<br><div class="ip">9666.fun:37083</div></div>
+        <div class="server-item orange">🌳 灵动奋斗青年服<br>版本：1.19.1 | 纯净生存<br><div class="ip">mc.ldgame.xyz</div></div>
+        <div class="server-item yellow">☁️ 云朵MC生存服<br>版本：1.19.1 | 离线可进<br><div class="ip">mc.dawnmc.top</div></div>
+        <div class="server-item green">🌙 无名小服<br>版本：1.19.1/1.19.2 | 领地+血夜<br><div class="ip">wumingserver.cc</div></div>
+        <div class="server-item blue">🎪 Hypixel 小游戏服<br>版本：1.8-1.19.1 | 正版推荐<br><div class="ip">mc.hypixel.net</div></div>
+        <div class="server-item purple">🌍 BoemCraft 国际服<br>版本：1.19 | 离线可进<br><div class="ip">play.boemcraft.net:31665</div></div>
+        <div class="server-item pink">🐑 绵羊小镇生存服<br>版本：1.19.3 | 离线可进 | 养老/建筑<br><div class="ip">sheep-mc.cn:25565</div></div>
+        <div class="server-item teal">⚙️ 红石研究所1.19<br>版本：1.19.2 | 离线 | 红石实验/生电<br><div class="ip">redstone19.mcserver.cc</div></div>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleServers(&#39;serverList2&#39;, this)">📂 Minecraft Java 1.20 离线可进</button>
+    <div class="server-list" id="serverList2">
+        <div class="server-item red">🌲 Cloudsdale 纯净服<br>版本：1.16.5-1.20.4 多版本互通<br><div class="ip">mc.cloudsdale.cn</div></div>
+        <div class="server-item orange">⚡ IMSng 跨平台生存<br>版本：1.20.4 | Java/基岩互通<br><div class="ip">mc.imsng.cn</div></div>
+        <div class="server-item yellow">🏠 1.20.1 纯净生存服<br>版本：1.20.1 | 纯原版无插件<br><div class="ip">gold6.mczbc.cn:30001</div></div>
+        <div class="server-item green">🌀 Mewing Realms<br>版本：1.20 | 离线可进 | 经济/生存<br><div class="ip">play.mewingrealms.my.id:25192</div></div>
+        <div class="server-item blue">🌟 Plus Ultra<br>版本：1.20 | 离线 | MCMMO/PvP<br><div class="ip">play.plusultraminecraft.com</div></div>
+        <div class="server-item purple">🏔️ Minelife Survival<br>版本：1.20 | 离线 | 任务/城镇<br><div class="ip">msl.minelife.net</div></div>
+        <div class="server-item pink">🐝 灵境生存服务器<br>版本：1.7-1.21 全版本 | 生电/宠物<br><div class="ip">lingjing.pro</div></div>
+        <div class="server-item teal">🌊 纯纯纯净生存<br>版本：1.7-1.21 全版本 | 无规则<br><div class="ip">3618.org</div></div>
+        <div class="server-item cyan">🚀 星界1.20.4生存服<br>版本：1.20.4 | 离线可进 | 科技模组<br><div class="ip">star120.mcplay.cc:25565</div></div>
+        <div class="server-item indigo">🎲 1.20.2 小游戏服<br>版本：1.20.2 | 离线 | 起床/空岛/密室<br><div class="ip">game120.mcfun.cc</div></div>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleServers(&#39;serverList3&#39;, this)">📂 Minecraft Java 1.21 离线可进</button>
+    <div class="server-list" id="serverList3">
+        <div class="server-item cyan">🎯 1.21 官方特性服<br>版本：1.21 最新 | 离线可进<br><div class="ip">mc.121mc.cn:20021</div></div>
+        <div class="server-item indigo">🌾 1.21 生电服<br>版本：1.21 | 红石/生电/离线<br><div class="ip">mc.redstone-wiki.cn</div></div>
+        <div class="server-item pink">🏰 1.21 冒险生存服<br>版本：1.21 | 副本/领地/离线<br><div class="ip">s1.mcserver121.com:21011</div></div>
+        <div class="server-item teal">🛡️ 1.21 正版离线互通<br>版本：1.21 | 无正版也能进<br><div class="ip">play.121mc.cc</div></div>
+        <div class="server-item blue">🌌 星空1.21服<br>版本：1.21 | 养老/建筑/离线<br><div class="ip">mc.star121.cn:12100</div></div>
+        <div class="server-item yellow">🎨 1.21 创意建筑服<br>版本：1.21 | 离线 | 无作弊/建筑大赛<br><div class="ip">build121.mc-creative.cn</div></div>
+        <div class="server-item green">🐉 1.21 龙域冒险服<br>版本：1.21 | 离线 | 末地/龙蛋/专属副本<br><div class="ip">dragon121.mc-adventure.cc:25577</div></div>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleServers(&#39;serverList4&#39;, this)">📂 最新版 通用离线服</button>
+    <div class="server-list" id="serverList4">
+        <div class="server-item red">🔄 全版本兼容服<br>版本：1.8~最新 都能进<br><div class="ip">hub.mc-union.com</div></div>
+        <div class="server-item orange">🌍 国际离线综合服<br>版本：自动适配最新版<br><div class="ip">play.mc-free.com</div></div>
+        <div class="server-item yellow">🛠️ 长期维护公益服<br>版本：持续更新最新版<br><div class="ip">mc-public.cn</div></div>
+        <div class="server-item green">🎮 小游戏全能服<br>版本：最新版优先<br><div class="ip">game.mc-latest.com</div></div>
+        <div class="server-item blue">🛡️ 反作弊全能服<br>版本：1.8~最新 | 离线 | 无外挂/PvP公平<br><div class="ip">anticheat.mc-safe.cn</div></div>
+        <div class="server-item purple">🎭 角色扮演通用服<br>版本：全版本适配 | 离线 | RPG/职业/任务<br><div class="ip">rpg.mc-roleplay.com:25588</div></div>
+    </div>
+
+    <div class="update-note">持续更新中,随时推送新服务器。(节假日更新)</div>
+</div>
+
+<div class="chat-desc-box" onclick="showLogin()">
+    🎯 MC玩家专属聊天栏 | 实时互通所有用户消息 | 畅聊游戏不孤单
+</div>
+
+<div id="loginModal" class="login-modal hide">
+    <div class="login-box">
+        <h2>MC聊天登录</h2>
+        <input type="text" id="username" class="login-input" placeholder="请输入你的游戏名称" autocomplete="off">
+        <button class="login-btn">登录并进入聊天</button>
+    </div>
+</div>
+
+<!-- 好友介绍小方框 -->
+<div style="max-width: 380px;margin: 40px auto 20px;padding: 14px 20px;background: rgba(255,255,255,0.9);border-radius: 12px;text-align: center;font-size: 15px;color: #333;box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
+    介绍一位微信好友：<strong>何所意</strong>，认识一下他就可以啦
+</div>
+
+<script>
+    let isDark = false;
+
+    // ========== 新增：根据时间自动切换模式 ==========
+    function autoSwitchModeByTime() {
+        const now = new Date();
+        const hour = now.getHours();
+        // 18点到次日6点 → 黑暗模式，其余时间 → 白天模式
+        const shouldBeDark = hour >= 18 || hour < 6;
+        
+        if (shouldBeDark !== isDark) {
+            toggleMode(); // 调用原有切换方法
+        }
+    }
+
+    // 原有切换模式方法（保留）
+    function toggleMode() {
+        isDark = !isDark;
+        document.body.classList.toggle('dark');
+        document.querySelector('.mode-toggle').innerText = isDark ? '切换为白天模式' : '切换为黑暗模式';
+    }
+
+    function toggleServers(listId, btn) {
+        const list = document.getElementById(listId);
+        list.classList.toggle("show");
+        btn.innerText = list.classList.contains("show") ? "📂 点击关闭列表" : 
+            (listId === "serverList1" ? "📂 Minecraft Java 1.19 离线可进" :
+             listId === "serverList2" ? "📂 Minecraft Java 1.20 离线可进" :
+             listId === "serverList3" ? "📂 Minecraft Java 1.21 离线可进" :
+             "📂 最新版 通用离线服");
+    }
+
+    function showLogin() {
+        document.getElementById("loginModal").classList.remove("hide");
+    }
+
+    function goToChat() {
+        let user = document.getElementById("username").value.trim();
+        if (!user) { alert("请输入游戏名称！"); return; }
+        // 核心修改：跳转链接改为指定的 https://chatmcf.netlify.app/
+        window.open(`https://chatmcf.netlify.app/?user=${user}`, "_blank");
+        document.getElementById("loginModal").classList.add("hide");
+    }
+
+    // ========== 页面加载时执行自动切换 ==========
+    window.onload = function() {
+        autoSwitchModeByTime();
+        // 可选：每隔1小时检查一次时间，确保跨时段自动切换
+        setInterval(autoSwitchModeByTime, 3600000); // 3600000毫秒 = 1小时
+    };
+</script>
+
+</body></html>
